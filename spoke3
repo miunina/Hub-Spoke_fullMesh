@@ -1,0 +1,39 @@
+config vpn ipsec phase1-interface
+    edit spoke3
+        set interface port2
+        set peertype any
+        set net-device enable
+        set proposal des-sha256 des-sha1
+        set add-route disable
+        set dpd on-idle
+        set auto-discovery-receiver enable
+        set remote-gw 192.162.254.2
+        set psksecret sample 
+        set dpd-retryinterval 5
+    next
+    edit spoke3_backup
+        set interface port4
+        set peertype any
+        set net-device enable
+        set proposal des-sha256 des-sha1
+        set add-route disable
+        set dpd on-idle
+        set auto-discovery-receiver enable
+        set remote-gw 12.1.254.2
+        set monitor spoke3
+        set psksecret sample
+        set dpd-retryinterval 5
+    next    
+end
+config vpn ipsec phase2-interface
+    edit spoke3
+        set phase1name "spoke3"
+        set proposal des-sha256 des-sha1
+        set auto-negotiate enable
+    next
+    edit spoke3_backup
+        set phase1name "spoke3_backup"
+        set proposal des-sha256 des-sha1
+        set auto-negotiate enable
+    next  
+end
