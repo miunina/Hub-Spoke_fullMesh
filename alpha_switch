@@ -1,0 +1,107 @@
+
+##########################################################################
+alpha_switch 1 :
+##########################################################################
+##########################################################################VLANS
+conf t 
+vlan 101
+name VLAN_101
+end
+
+conf t 
+vlan 40
+name VLAN_40
+end
+
+conf t 
+vlan 99
+name native
+end
+
+conf t 
+vlan 30
+name VLAN_30
+end
+
+
+##########################################################################TRUNK
+int g0/0
+switchport trunk encapsulation dot1q
+switchport mode trunk
+
+int g0/1
+switchport trunk allowed vlan 40,30,99,101
+switchport trunk native vlan 99
+switchport trunk encapsulation dot1q
+switchport mode trunk
+##########################################################################ACCESS
+int g0/2
+switchport mode access
+switchport access vlan 101
+exit
+int g0/3
+switchport mode access
+switchport access vlan 101
+exit
+
+
+##########################################################################
+alpha_switch2
+##########################################################################
+vlan 101
+name VLAN_101
+exit
+
+conf t
+vlan 40
+name VLAN_40
+exit
+vlan 30
+name VLAN_30
+exit
+vlan 99
+name native
+exit
+##########################################################################trunk
+int g0/0
+switchport trunk encapsulation dot1q
+switchport mode trunk
+
+int g0/0
+switchport trunk allowed vlan 40,30,99
+switchport trunk native vlan 99
+switchport trunk encapsulation dot1q
+switchport mode trunk
+##########################################################################30
+int g0/1
+switchport mode access
+switchport access vlan 30
+exit
+int g0/2
+switchport mode access
+switchport access vlan 30
+exit
+int g0/3
+switchport mode access
+switchport access vlan 30
+exit
+##########################################################################40
+int g1/0
+switchport mode access
+switchport access vlan 40
+exit
+int g1/1 
+switchport mode access
+switchport access vlan 40
+exit
+int g1/2 
+switchport mode access
+switchport access vlan 40
+exit
+int g1/3 
+switchport mode access
+switchport access vlan 40
+exit
+    
+    vlan dot1q tag native
+   

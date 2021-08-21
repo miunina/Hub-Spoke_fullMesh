@@ -1,0 +1,96 @@
+
+##########################################################################
+alpha_switch :
+##########################################################################
+##########################################################################VLANS
+conf t 
+vlan 10
+name vlan10
+end
+
+conf t 
+vlan 99
+name native
+end
+
+
+conf t 
+vlan 30
+name vlan30
+end
+
+conf t 
+vlan 101
+name vlan101
+end
+##########################################################################TRUNK
+int g0/0
+switchport trunk encapsulation dot1q
+switchport mode trunk
+
+int g0/1
+switchport trunk encapsulation dot1q
+switchport mode trunk
+##########################################################################ACCESS
+int g0/2
+switchport mode access
+switchport access vlan 101
+end
+int g0/3
+switchport mode access
+switchport access vlan 101
+end
+
+
+##########################################################################
+alpha_switch2
+##########################################################################
+conf t
+vlan 40
+name vlan40
+exit
+vlan 30
+name vlan30
+exit
+vlan 101
+name vlan101
+exit
+vlan 99
+name native
+exit
+##########################################################################trunk
+int g0/0
+switchport mode trunk
+switchport trunk encapsulation dot1q
+##########################################################################30
+int g0/1
+switchport mode access
+switchport access vlan 30
+exit
+int g0/2
+switchport mode access
+switchport access vlan 30
+exit
+int g0/3
+switchport mode access
+switchport access vlan 30
+exit
+##########################################################################40
+int g1/0
+switchport mode access
+switchport access vlan 10
+exit
+int g1/1 
+switchport mode access
+switchport access vlan 10
+exit
+int g1/2 
+switchport mode access
+switchport access vlan 10
+exit
+int g1/3 
+switchport mode access
+switchport access vlan 10
+exit
+    
+   

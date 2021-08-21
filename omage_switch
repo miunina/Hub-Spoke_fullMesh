@@ -1,0 +1,73 @@
+
+##########################################################################
+alpha_switch :
+##########################################################################
+#####################################VLANS#####################################
+conf t 
+vlan 10
+name VLAN_10
+end
+
+conf t 
+vlan 101
+name VLAN_101
+exit
+
+ 
+vlan 99
+name native
+exit
+
+
+
+#####################################TRUNK#####################################
+switchport trunk allowed vlan 10,101,99
+switchport trunk native vlan 99
+
+switchport nonegotiate
+
+interface Gi0/0
+switchport trunk encapsulation dot1q
+
+switchport mode trunk
+
+no sh
+####################################ACCESS 101#####################################
+int g0/1
+switchport mode access
+switchport access vlan 101
+no sh
+exit
+
+int g0/2
+switchport mode access
+switchport access vlan 101
+no sh
+exit
+
+int g0/3
+switchport mode access
+switchport access vlan 101
+no sh
+exit
+
+################################ACCESS 10############################################
+int g1/0
+switchport mode access
+switchport access vlan 10
+exit
+int g1/1 
+switchport mode access
+switchport access vlan 10
+exit
+int g1/2 
+switchport mode access
+switchport access vlan 10
+exit
+int g1/3 
+switchport mode access
+switchport access vlan 10
+exit
+    
+vlan dot1q tag native
+  
