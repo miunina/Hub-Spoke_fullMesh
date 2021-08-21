@@ -17,4 +17,4 @@ Here normally advpns tunnels should be built.
 
 Step 4: BGP configuration
 
-Translated with www.DeepL.com/Translator (free version)
+
