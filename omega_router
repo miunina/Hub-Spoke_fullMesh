@@ -1,0 +1,55 @@
+#######################################################################################################
+#CONFIG INTERFACE NO sh DHCP
+#######################################################################################################
+conf t
+int g0/0 
+no sh
+
+int g0/1
+no sh
+
+int g0/2
+no sh
+
+int g0/1.10
+encapsulation dot1q 10
+ip address 172.150.5.1 255.255.255.192
+exit
+int g0/1.101
+encapsulation dot1q 101
+ip address 172.150.5.65 255.255.255.224
+exit
+int g0/1.99
+encapsulation dot1q 99
+ip address 172.150.5.1 255.255.255.240
+exit
+
+
+ip dhcp pool VLAN_10
+network 172.150.5.0 255.255.255.192
+default-router 172.150.5.1
+exit 
+
+ip dhcp pool VLAN_101
+network 172.150.5.64 255.255.255.224
+default-router 172.150.5.65
+exit 
+
+ip dhcp pool VLAN_99
+network 172.150.5.112 255.255.255.240
+default-router 172.150.5.113
+exit 
+
+ip dhcp excluded-address 172.150.5.1
+ip dhcp excluded-address 172.150.5.65
+ip dhcp excluded-address 172.150.5.113
+
+
+ 
+
+
+#######################################################################################################
+
+
+
+service dhcp vlan99
