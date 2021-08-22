@@ -1,50 +1,50 @@
 
 ##########################################################################
-alpha_switch :
+#alpha_switch :
 ##########################################################################
 ##########################################################################VLANS
-conf t 
+configure terminal 
 vlan 40
 name vlan10
 end
 
-conf t 
+configure terminal 
 vlan 99
 name native
 end
 
-conf t 
+configure terminal 
 vlan 101
 name vlan101
 end
 ##########################################################################TRUNK
-int g0/0
+interface g0/0
 switchport trunk encapsulation dot1q
 switchport mode trunk
 ##########################################################################ACCESS
-int g0/2
+interface g0/2
 switchport mode access
 switchport access vlan 101
 end
-int g0/3
+interface g0/3
 switchport mode access
 switchport access vlan 101
 end
 
 ##########################################################################40
-int g1/0
+interface g1/0
 switchport mode access
 switchport access vlan 40
 exit
-int g1/1 
+interface g1/1 
 switchport mode access
 switchport access vlan 40
 exit
-int g1/2 
+interface g1/2 
 switchport mode access
 switchport access vlan 40
 exit
-int g1/3 
+interface g1/3 
 switchport mode access
 switchport access vlan 40
 exit

@@ -3,45 +3,48 @@
 alpha_switch 1 :
 ##########################################################################
 ##########################################################################VLANS
-conf t 
+configure terminal 
 vlan 101
 name VLAN_101
 end
 
-conf t 
+configure terminal 
 vlan 40
 name VLAN_40
 end
 
-conf t 
+configure terminal 
 vlan 99
 name native
 end
 
-conf t 
+configure terminal 
 vlan 30
 name VLAN_30
 end
 
 
 ##########################################################################TRUNK
-int g0/0
+interface g0/0
 switchport trunk encapsulation dot1q
 switchport mode trunk
+no shutdown
 
-int g0/1
+interface g0/1
 switchport trunk allowed vlan 40,30,99,101
 switchport trunk native vlan 99
 switchport trunk encapsulation dot1q
 switchport mode trunk
+no shutdown
 ##########################################################################ACCESS
-int g0/2
+interface g0/2
 switchport mode access
 switchport access vlan 101
 exit
-int g0/3
+interface g0/3
 switchport mode access
 switchport access vlan 101
+no shutdown
 exit
 
 
@@ -52,7 +55,7 @@ vlan 101
 name VLAN_101
 exit
 
-conf t
+configure terminal
 vlan 40
 name VLAN_40
 exit
@@ -63,44 +66,53 @@ vlan 99
 name native
 exit
 ##########################################################################trunk
-int g0/0
+interface g0/0
 switchport trunk encapsulation dot1q
 switchport mode trunk
+no shutdown
 
-int g0/0
+interface g0/0
 switchport trunk allowed vlan 40,30,99
 switchport trunk native vlan 99
 switchport trunk encapsulation dot1q
 switchport mode trunk
+no shutdown
 ##########################################################################30
-int g0/1
+interface g0/1
 switchport mode access
 switchport access vlan 30
+no shutdown
 exit
-int g0/2
+interface g0/2
 switchport mode access
 switchport access vlan 30
+no shutdown
 exit
-int g0/3
+interface g0/3
 switchport mode access
 switchport access vlan 30
+no shutdown
 exit
 ##########################################################################40
-int g1/0
+interface g1/0
 switchport mode access
 switchport access vlan 40
+no shutdown
 exit
-int g1/1 
+interface g1/1 
 switchport mode access
 switchport access vlan 40
+no shutdown
 exit
-int g1/2 
+interface g1/2 
 switchport mode access
 switchport access vlan 40
+no shutdown
 exit
-int g1/3 
+interface g1/3 
 switchport mode access
 switchport access vlan 40
+no shutdown
 exit
     
     vlan dot1q tag native

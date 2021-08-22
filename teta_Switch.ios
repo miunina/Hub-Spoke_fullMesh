@@ -3,40 +3,40 @@
 alpha_switch :
 ##########################################################################
 ##########################################################################VLANS
-conf t 
+configure terminal 
 vlan 10
 name vlan10
 end
 
-conf t 
+configure terminal 
 vlan 99
 name native
 end
 
 
-conf t 
+configure terminal 
 vlan 30
 name vlan30
 end
 
-conf t 
+configure terminal 
 vlan 101
 name vlan101
 end
 ##########################################################################TRUNK
-int g0/0
+interface g0/0
 switchport trunk encapsulation dot1q
 switchport mode trunk
 
-int g0/1
+interface g0/1
 switchport trunk encapsulation dot1q
 switchport mode trunk
 ##########################################################################ACCESS
-int g0/2
+interface g0/2
 switchport mode access
 switchport access vlan 101
 end
-int g0/3
+interface g0/3
 switchport mode access
 switchport access vlan 101
 end
@@ -45,7 +45,7 @@ end
 ##########################################################################
 alpha_switch2
 ##########################################################################
-conf t
+configure terminal
 vlan 40
 name vlan40
 exit
@@ -59,36 +59,36 @@ vlan 99
 name native
 exit
 ##########################################################################trunk
-int g0/0
+interface g0/0
 switchport mode trunk
 switchport trunk encapsulation dot1q
 ##########################################################################30
-int g0/1
+interface g0/1
 switchport mode access
 switchport access vlan 30
 exit
-int g0/2
+interface g0/2
 switchport mode access
 switchport access vlan 30
 exit
-int g0/3
+interface g0/3
 switchport mode access
 switchport access vlan 30
 exit
 ##########################################################################40
-int g1/0
+interface g1/0
 switchport mode access
 switchport access vlan 10
 exit
-int g1/1 
+interface g1/1 
 switchport mode access
 switchport access vlan 10
 exit
-int g1/2 
+interface g1/2 
 switchport mode access
 switchport access vlan 10
 exit
-int g1/3 
+interface g1/3 
 switchport mode access
 switchport access vlan 10
 exit
