@@ -1,27 +1,27 @@
 #######################################################################################################
 #CONFIG INTERFACE NO sh DHCP
 #######################################################################################################
-conf t
-int g0/0 
+configure terminal
+interface g0/0 
 no sh
 
-int g0/1
+interface g0/1
 no sh
 
-int g0/2
+interface g0/2
 no sh
 
-int g0/1.10
+interface g0/1.10
 encapsulation dot1q 10
 ip address 172.150.5.1 255.255.255.192
 exit
-int g0/1.101
+interface g0/1.101
 encapsulation dot1q 101
 ip address 172.150.5.65 255.255.255.224
 exit
-int g0/1.99
+interface g0/1.99
 encapsulation dot1q 99
-ip address 172.150.5.1 255.255.255.240
+ip address 172.150.5.113 255.255.255.240
 exit
 
 

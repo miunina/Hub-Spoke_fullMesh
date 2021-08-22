@@ -1,29 +1,29 @@
 #######################################################################################################
-#CONFIG INTERFACE NO sh DHCP
+#CONFIG INTERFACE no shutdown DHCP
 #######################################################################################################
-conf t
-int g0/0 
-no sh
+configure terminal
+interface g0/0 
+no shutdown
 
-int g0/1
-no sh
+interface g0/1
+no shutdown
 
-int g0/2
-no sh
+interface g0/2
+no shutdown
 #######################################################################################################
-int g0/1.40
+interface g0/1.40
 encapsulation dot1q 40
 ip address 172.150.2.1 255.255.255.192
 exit
-int g0/1.30
+interface g0/1.30
 encapsulation dot1q 30
 ip address 172.150.2.65 255.255.255.224
 exit
-int g0/1.101
+interface g0/1.101
 encapsulation dot1q 101
 ip address 172.150.2.97 255.255.255.240
 exit
-int g0/1.99
+interface g0/1.99
 encapsulation dot1q 99
 ip address 172.150.2.113 255.255.255.240
 exit
