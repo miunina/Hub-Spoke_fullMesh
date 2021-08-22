@@ -1,0 +1,16 @@
+conf t
+int g0/0
+ip address 192.162.10.2 255.255.255.0
+no sh 
+
+int g0/1
+ip address 12.1.0.2 255.255.255.0
+no sh 
+
+int g0/3
+no sh 
+
+int g0/3.10
+int g0/3.30
+int g0/3.101
+int g0/3.99
