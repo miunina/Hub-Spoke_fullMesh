@@ -12,11 +12,11 @@ ip address 192.162.11.1 255.255.255.0
 no sh 
 
 int g0/3
-ip address 192.162.12.1 255.255.255.0
+ip address 192.162.2.1 255.255.255.0
 no sh 
 
 int g0/4
-ip address 192.162.13.1 255.255.255.0
+ip address 192.162.3.1 255.255.255.0
 no sh 
 
 
