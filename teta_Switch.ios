@@ -5,7 +5,7 @@ alpha_switch :
 ##########################################################################VLANS
 configure terminal 
 vlan 10
-name vlan10
+name VLAN_10
 end
 
 configure terminal 
@@ -16,26 +16,34 @@ end
 
 configure terminal 
 vlan 30
-name vlan30
+name VLAN_30
 end
 
 configure terminal 
 vlan 101
-name vlan101
-end
+name VLAN_101
+exit
 ##########################################################################TRUNK
 interface g0/0
+switchport trunk allowed vlan 10,30,99,101
+switchport trunk native vlan 99
 switchport trunk encapsulation dot1q
 switchport mode trunk
+vlan dot1q tag native
 
 interface g0/1
+switchport trunk allowed vlan 10,30,99,101
+switchport trunk native vlan 99
 switchport trunk encapsulation dot1q
 switchport mode trunk
+vlan dot1q tag native
 ##########################################################################ACCESS
+conf t
 interface g0/2
 switchport mode access
 switchport access vlan 101
 end
+conf t
 interface g0/3
 switchport mode access
 switchport access vlan 101
@@ -47,50 +55,64 @@ alpha_switch2
 ##########################################################################
 configure terminal
 vlan 40
-name vlan40
+name VLAN_10
 exit
 vlan 30
-name vlan30
-exit
-vlan 101
-name vlan101
+name VLAN_30
 exit
 vlan 99
 name native
 exit
 ##########################################################################trunk
 interface g0/0
-switchport mode trunk
+switchport trunk allowed vlan 10,30,99
 switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk native vlan 99
+vlan dot1q tag native
+no sh
 ##########################################################################30
 interface g0/1
 switchport mode access
 switchport access vlan 30
+no sh
 exit
 interface g0/2
 switchport mode access
 switchport access vlan 30
+no sh
 exit
 interface g0/3
 switchport mode access
 switchport access vlan 30
+no sh
 exit
 ##########################################################################40
 interface g1/0
 switchport mode access
-switchport access vlan 10
+switchport access vlan 40
+no sh
 exit
 interface g1/1 
 switchport mode access
-switchport access vlan 10
+switchport access vlan 40
+no sh
 exit
 interface g1/2 
 switchport mode access
-switchport access vlan 10
+switchport access vlan 40
+no sh
 exit
 interface g1/3 
 switchport mode access
-switchport access vlan 10
+switchport access vlan 40
+no sh
 exit
     
+
+
+conf t
+int g0/0
+no negotiation auto
+duplex full
    

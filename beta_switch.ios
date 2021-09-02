@@ -5,7 +5,7 @@
 ##########################################################################VLANS
 configure terminal 
 vlan 40
-name vlan10
+name VLAN_40
 end
 
 configure terminal 
@@ -15,39 +15,67 @@ end
 
 configure terminal 
 vlan 101
-name vlan101
+name VLAN_101
 end
 ##########################################################################TRUNK
+conf t
 interface g0/0
+switchport trunk allowed vlan 40 101 99
 switchport trunk encapsulation dot1q
 switchport mode trunk
+switchport trunk native vlan 99
+vlan dot1q tag native
 ##########################################################################ACCESS
+interface g0/1
+switchport mode access
+switchport access vlan 101
+no sh
+end
+
 interface g0/2
 switchport mode access
 switchport access vlan 101
+no sh
 end
+conf t
 interface g0/3
 switchport mode access
 switchport access vlan 101
+no sh
 end
-
+conf t
 ##########################################################################40
 interface g1/0
 switchport mode access
 switchport access vlan 40
+no sh
 exit
 interface g1/1 
 switchport mode access
 switchport access vlan 40
+no sh
 exit
 interface g1/2 
 switchport mode access
 switchport access vlan 40
+no sh
 exit
 interface g1/3 
 switchport mode access
 switchport access vlan 40
+no sh
 exit
     
+
+conf t
+int g0/0
+no negotiation auto
+duplex full
+
+conf t
+int g0/1
+no negotiation auto
+duplex full
    
-  
+
+     
