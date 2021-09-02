@@ -1,5 +1,5 @@
 # Pre-configuration ADVPN+BGP on HUB & SPOKE
-![topology](https://user-images.githubusercontent.com/49697768/129991006-23381140-8dd9-4b98-8b49-250462453056.png)
+
 
 ![topology_single_dual_homed_hub_and_spoke](https://github.com/miunina/Hub-Spoke_fullMesh/blob/miunina-patch-1/topology_single_dual_homed_hub_and_spoke.png)
 
