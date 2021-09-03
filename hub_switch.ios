@@ -1,0 +1,82 @@
+
+##########################################################################
+alpha_switch :
+switchport nonegotiate
+##########################################################################
+#####################################VLANS#####################################
+configure terminal 
+vlan 40
+name VLAN-40
+end
+
+configure terminal 
+vlan 101
+name VLAN-101
+exit
+
+ 
+vlan 99
+name VLAN-99
+exit
+
+
+
+#####################################TRUNK#####################################
+interface Gi0/0
+switchport trunk allowed vlan 99,40,101
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk native vlan 99
+vlan dot1q tag native
+no sh
+####################################ACCESS 401#####################################
+interface g0/1
+switchport mode access
+switchport access vlan 40
+no sh
+exit
+
+interface g0/2
+switchport mode access
+switchport access vlan 40
+no sh
+exit
+
+interface g0/3
+switchport mode access
+switchport access vlan 40
+no sh
+exit
+
+################################ACCESS 40############################################
+interface g1/0
+switchport mode access
+switchport access vlan 101
+exit
+interface g1/1
+switchport trunk allowed vlan 99,40,101
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk native vlan 99
+vlan dot1q tag native
+no sh
+exit
+interface g1/2 
+switchport mode access
+switchport access vlan 101
+exit
+interface g1/3 
+switchport mode access
+switchport access vlan 101
+exit
+    
+
+
+conf t
+int g0/0
+no negotiation auto
+duplex full
+   
+   
+vlan dot1q tag native
+  
