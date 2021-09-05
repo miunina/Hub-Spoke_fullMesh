@@ -1,0 +1,109 @@
+FortiGate-Central_Hub # get router info routing-table database
+Codes: K - kernel, C - connected, S - static, R - RIP, B - BGP
+       O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       > - selected route, * - FIB route, p - stale info
+
+Routing table for VRF=0
+C    *> 10.10.10.1/32 is directly connected, advpn-hub1
+S    *> 10.10.10.2/32 [15/0] via 192.162.2.2, advpn-hub1
+S    *> 10.10.10.3/32 [15/0] via 192.162.3.2, advpn-hub1
+C    *> 10.10.20.1/32 is directly connected, advpn2-hub1
+S    *> 10.10.20.2/32 [15/0] via 12.1.2.2, advpn2-hub1
+S    *> 10.10.20.3/32 [15/0] via 12.1.3.2, advpn2-hub1
+S    *> 12.1.0.0/16 [10/0] via 12.1.254.1, port4
+C    *> 12.1.254.0/24 is directly connected, port4
+C    *> 172.150.1.0/26 is directly connected, VLAN_40
+C    *> 172.150.1.64/27 is directly connected, VLAN_101
+C    *> 172.150.1.112/28 is directly connected, VLAN_99
+B    *> 172.150.3.0/26 [200/0] via 10.10.10.2 (recursive via 192.162.2.2, advpn-hub1), 02:16:46
+     *>                [200/0] via 10.10.20.2 (recursive via 12.1.2.2, advpn2-hub1), 02:16:46
+B    *> 172.150.3.64/27 [200/0] via 10.10.10.2 (recursive via 192.162.2.2, advpn-hub1), 02:16:46
+     *>                 [200/0] via 10.10.20.2 (recursive via 12.1.2.2, advpn2-hub1), 02:16:46
+B    *> 172.150.3.96/27 [200/0] via 10.10.10.2 (recursive via 192.162.2.2, advpn-hub1), 02:16:46
+     *>                 [200/0] via 10.10.20.2 (recursive via 12.1.2.2, advpn2-hub1), 02:16:46
+B    *> 172.150.4.0/26 [200/0] via 10.10.10.3 (recursive via 192.162.3.2, advpn-hub1), 02:16:29
+--More--
+     *>                [200/0] via 10.10.20.3 (recursive via 12.1.3.2, advpn2-hub1), 02:16:29
+--More--
+B    *> 172.150.4.64/27 [200/0] via 10.10.10.3 (recursive via 192.162.3.2, advpn-hub1), 02:16:29
+     *>                 [200/0] via 10.10.20.3 (recursive via 12.1.3.2, advpn2-hub1), 02:16:29
+B    *> 172.150.4.96/28 [200/0] via 10.10.10.3 (recursive via 192.162.3.2, advpn-hub1), 02:16:29
+--More--
+     *>                 [200/0] via 10.10.20.3 (recursive via 12.1.3.2, advpn2-hub1), 02:16:29
+B    *> 172.150.4.112/28 [200/0] via 10.10.10.3 (recursive via 192.162.3.2, advpn-hub1), 02:16:29
+     *>                  [200/0] via 10.10.20.3 (recursive via 12.1.3.2, advpn2-hub1), 02:16:29
+S    *> 192.162.0.0/16 [10/0] via 192.162.254.1, port2
+C    *> 192.162.254.0/24 is directly connected, port2
+C    *> 192.168.1.0/24 is directly connected, port10
+
+
+
+
+
+
+
+
+
+
+
+FortiGate-beta_spoke2 # get router info routing-table database
+Codes: K - kernel, C - connected, S - static, R - RIP, B - BGP
+       O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       > - selected route, * - FIB route, p - stale info
+
+Routing table for VRF=0
+S    *> 0.0.0.0/0 [10/0] via 192.162.2.1, port2
+     *>           [10/0] via 12.1.2.1, port4
+C    *> 10.10.10.0/24 is directly connected, spoke2_0
+S       10.10.10.0/24 [5/0] via 192.162.254.2, spoke2
+S    *> 10.10.10.1/32 [15/0] via 192.162.254.2, spoke2
+C    *> 10.10.10.2/32 is directly connected, spoke2
+     *>               is directly connected, spoke2_0
+S    *> 10.10.10.3/32 [15/0] via 192.162.3.2, spoke2_0
+S    *> 10.10.20.0/24 [5/0] via 12.1.254.2, spoke2_backup
+S    *> 10.10.20.1/32 [15/0] via 12.1.254.2, spoke2_backup
+C    *> 10.10.20.2/32 is directly connected, spoke2_backup
+C    *> 12.1.2.0/24 is directly connected, port4
+S       12.1.254.0/24 [1/0] via 192.162.2.1, spoke2 inactive, [0/1]
+                      [1/0] via 12.1.2.1, spoke2_backup inactive, [0/1]
+B    *> 172.150.1.0/26 [200/0] via 10.10.10.1 (recursive via 192.162.254.2, spoke2), 02:19:13
+     *>                [200/0] via 10.10.20.1 (recursive via 12.1.254.2, spoke2_backup), 02:19:13
+B    *> 172.150.1.64/27 [200/0] via 10.10.10.1 (recursive via 192.162.254.2, spoke2), 02:19:13
+     *>                 [200/0] via 10.10.20.1 (recursive via 12.1.254.2, spoke2_backup), 02:19:13
+B    *> 172.150.1.112/28 [200/0] via 10.10.10.1 (recursive via 192.162.254.2, spoke2), 02:19:13
+     *>                  [200/0] via 10.10.20.1 (recursive via 12.1.254.2, spoke2_backup), 02:19:13
+--More--
+C    *> 172.150.3.0/26 is directly connected, VLAN_40
+
+C    *> 172.150.3.64/27 is directly connected, VLAN_101
+--More--
+C    *> 172.150.3.96/27 is directly connected, VLAN_99
+--More--
+
+B    *> 172.150.4.0/26 [200/0] via 10.10.10.3 (recursive via 192.162.3.2, spoke2_0), 02:04:18
+     *>                [200/0] via 10.10.20.3 (recursive via 12.1.254.2, spoke2_backup), 02:04:18
+     *>                [200/0] via 10.10.10.3 (recursive via 192.162.3.2, spoke2_0), 02:04:18
+     *>                [200/0] via 10.10.20.3 (recursive via 12.1.254.2, spoke2_backup), 02:04:18
+B    *> 172.150.4.64/27 [200/0] via 10.10.10.3 (recursive via 192.162.3.2, spoke2_0), 02:04:18
+     *>                 [200/0] via 10.10.20.3 (recursive via 12.1.254.2, spoke2_backup), 02:04:18
+     *>                 [200/0] via 10.10.10.3 (recursive via 192.162.3.2, spoke2_0), 02:04:18
+     *>                 [200/0] via 10.10.20.3 (recursive via 12.1.254.2, spoke2_backup), 02:04:18
+B    *> 172.150.4.96/28 [200/0] via 10.10.10.3 (recursive via 192.162.3.2, spoke2_0), 02:04:18
+     *>                 [200/0] via 10.10.20.3 (recursive via 12.1.254.2, spoke2_backup), 02:04:18
+     *>                 [200/0] via 10.10.10.3 (recursive via 192.162.3.2, spoke2_0), 02:04:18
+     *>                 [200/0] via 10.10.20.3 (recursive via 12.1.254.2, spoke2_backup), 02:04:18
+B    *> 172.150.4.112/28 [200/0] via 10.10.10.3 (recursive via 192.162.3.2, spoke2_0), 02:04:18
+     *>                  [200/0] via 10.10.20.3 (recursive via 12.1.254.2, spoke2_backup), 02:04:18
+     *>                  [200/0] via 10.10.10.3 (recursive via 192.162.3.2, spoke2_0), 02:04:18
+     *>                  [200/0] via 10.10.20.3 (recursive via 12.1.254.2, spoke2_backup), 02:04:18
+C    *> 192.162.2.0/24 is directly connected, port2
+S       192.162.254.0/24 [1/0] via 192.162.2.1, spoke2 inactive, [0/1]
+                         [1/0] via 12.1.2.1, spoke2_backup inactive, [0/1]
+C    *> 192.168.1.0/24 is directly connected, port10
+

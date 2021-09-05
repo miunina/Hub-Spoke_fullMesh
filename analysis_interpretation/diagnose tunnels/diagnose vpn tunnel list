@@ -110,3 +110,77 @@ stat: rxp=680 txp=678 rxb=66120 txb=28746
 dpd: mode=on-demand on=0 idle=5000ms retry=3 count=0 seqno=0
 natt: mode=none draft=0 interval=0 remote_port=0
 run_tally=0
+
+
+
+
+
+
+
+
+list all ipsec tunnel in vd 0
+------------------------------------------------------
+name=spoke2_0 ver=2 serial=3 192.162.2.2:0->192.162.3.2:0 tun_id=192.162.3.2 dst_mtu=1500 dpd-link=on remote_location=0.0.0.0 weight=1
+bound_if=4 lgwy=static/1 tun=intf/0 mode=dial_inst/3 encap=none/3792 options[0ed0]=create_dev no-sysctl rgwy-chg frag-rfc fec-egress fec-ingress  accept_traffic=1 overlay_id=0
+
+parent=spoke2 index=0
+proxyid_num=1 child_num=0 refcnt=7 ilast=0 olast=0 ad=r/2
+stat: rxp=29909 txp=29910 rxb=2872464 txb=1197720
+dpd: mode=on-idle on=1 idle=20000ms retry=3 count=0 seqno=0
+natt: mode=none draft=0 interval=0 remote_port=0
+fec-egress: base=20 redundant=1 remote_port=50000 codec=rs
+fec-ingress: base=20 redundant=1 codec=rs
+proxyid=spoke02 proto=0 sa=1 ref=5 serial=1 adr
+  src: 0:0.0.0.0/0.0.0.0:0
+  dst: 0:0.0.0.0/0.0.0.0:0
+  SA:  ref=3 options=32202 type=00 soft=0 mtu=1390 expire=36038/0B replaywin=2048
+       seqno=74d7 esn=0 replaywin_lastseq=000074d6 itn=0 qat=0 hash_search_len=1
+  life: type=01 bytes=0/0 timeout=43190/43200
+  dec: spi=6df1aaaa esp=des key=8 698209c7eca21d61
+       ah=md5 key=16 a6a39fe6bab11d0e3d613cc5f7bb67e9
+  enc: spi=cb517b16 esp=des key=8 0d7d1e2ee67b666c
+       ah=md5 key=16 1650a7305547abf1ee5a074c7395e49c
+  dec:pkts/bytes=29909/1197680, enc:pkts/bytes=29910/2872560
+------------------------------------------------------
+name=spoke2 ver=2 serial=1 192.162.2.2:0->192.162.254.2:0 tun_id=192.162.254.2 dst_mtu=1500 dpd-link=on remote_location=0.0.0.0 weight=1
+bound_if=4 lgwy=static/1 tun=intf/0 mode=auto/1 encap=none/3600 options[0e10]=create_dev frag-rfc fec-egress fec-ingress  accept_traffic=1 overlay_id=0
+
+proxyid_num=1 child_num=1 refcnt=6 ilast=13 olast=13 ad=r/2
+stat: rxp=31478 txp=31475 rxb=3030928 txb=1268180
+dpd: mode=on-idle on=1 idle=20000ms retry=3 count=0 seqno=241
+natt: mode=none draft=0 interval=0 remote_port=0
+fec-egress: base=20 redundant=1 remote_port=50000 codec=rs
+fec-ingress: base=20 redundant=1 codec=rs
+proxyid=spoke02 proto=0 sa=1 ref=3 serial=1 adr
+  src: 0:0.0.0.0/0.0.0.0:0
+  dst: 0:0.0.0.0/0.0.0.0:0
+  SA:  ref=3 options=32202 type=00 soft=0 mtu=1390 expire=34761/0B replaywin=2048
+       seqno=61e esn=0 replaywin_lastseq=00000622 itn=0 qat=0 hash_search_len=1
+  life: type=01 bytes=0/0 timeout=42897/43200
+  dec: spi=6df1aaa7 esp=des key=8 198d470388fee30a
+       ah=sha1 key=20 10c2a7631f7d45b7e2f2390facc2563d602b2485
+  enc: spi=e70b8105 esp=des key=8 c1bc4a891263ca4e
+       ah=sha1 key=20 097f37282a4a5b82a9005caae7171e7d7581f648
+  dec:pkts/bytes=1569/71195, enc:pkts/bytes=1565/157512
+------------------------------------------------------
+name=spoke2_backup ver=2 serial=2 12.1.2.2:0->12.1.254.2:0 tun_id=12.1.254.2 dst_mtu=1500 dpd-link=on remote_location=0.0.0.0 weight=1
+bound_if=6 lgwy=static/1 tun=intf/0 mode=auto/1 encap=none/3600 options[0e10]=create_dev frag-rfc fec-egress fec-ingress  accept_traffic=1 overlay_id=0
+
+proxyid_num=1 child_num=0 refcnt=5 ilast=12 olast=12 ad=r/2
+stat: rxp=1571 txp=1593 rxb=157656 txb=71503
+dpd: mode=on-idle on=1 idle=20000ms retry=3 count=0 seqno=242
+natt: mode=none draft=0 interval=0 remote_port=0
+fec-egress: base=20 redundant=1 remote_port=50000 codec=rs
+fec-ingress: base=20 redundant=1 codec=rs
+proxyid=spoke02_backup proto=0 sa=1 ref=3 serial=1 adr
+  src: 0:0.0.0.0/0.0.0.0:0
+  dst: 0:0.0.0.0/0.0.0.0:0
+  SA:  ref=3 options=32202 type=00 soft=0 mtu=1390 expire=34811/0B replaywin=2048
+       seqno=63a esn=0 replaywin_lastseq=00000624 itn=0 qat=0 hash_search_len=1
+  life: type=01 bytes=0/0 timeout=42901/43200
+  dec: spi=6df1aaa9 esp=des key=8 04878acedf0c8aed
+       ah=sha1 key=20 a06d0327d76661a50f995165aa03c6663221926d
+  enc: spi=e70b8107 esp=des key=8 28eb3d04f8a7b8fb
+       ah=sha1 key=20 5cdae72f72d74d8543ce898d54e74f5fca9dae66
+  dec:pkts/bytes=1571/70154, enc:pkts/bytes=1593/160136
+
