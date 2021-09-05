@@ -4,19 +4,19 @@ ip address 192.162.254.1 255.255.255.0
 no sh 
 
 int g0/1
-ip address 192.162.10.1 255.255.255.0
+ip address 192.162.1.1 255.255.255.0
 no sh 
 
 int g0/2
-ip address 192.162.11.1 255.255.255.0
-no sh 
-
-int g0/3
 ip address 192.162.2.1 255.255.255.0
 no sh 
 
-int g0/4
+int g0/3
 ip address 192.162.3.1 255.255.255.0
+no sh 
+
+int g0/4
+ip address 192.162.4.1 255.255.255.0
 no sh 
 
 
