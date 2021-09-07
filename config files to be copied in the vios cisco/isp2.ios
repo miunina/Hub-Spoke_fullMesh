@@ -1,6 +1,6 @@
 conf t
 int g0/0
-ip address 12.1.254.1 255.255.255.0
+ip address 216.4.0.5 255.255.255.0
 no sh 
 
 int g0/1
