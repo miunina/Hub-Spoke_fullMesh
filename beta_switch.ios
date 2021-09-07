@@ -31,7 +31,7 @@ switchport mode access
 switchport access vlan 101
 no sh
 end
-
+conf t
 interface g0/2
 switchport mode access
 switchport access vlan 101
