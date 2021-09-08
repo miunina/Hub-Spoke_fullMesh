@@ -1,38 +1,85 @@
-HUB:
-
-
-diagnose vpn tunnel list:
-
+FortiGate-teta_spoke3 # diagnose vpn t l
 list all ipsec tunnel in vd 0
 ------------------------------------------------------
-name=advpn-hub1_0 ver=2 serial=3 192.162.254.2:0->192.162.2.2:0 tun_id=192.162.2.2 dst_mtu=1500 dpd-link=on remote_location=0.0.0.0 weight=1
-bound_if=4 lgwy=static/1 tun=intf/0 mode=dial_inst/3 encap=none/3712 options[0e80]=rgwy-chg frag-rfc fec-egress fec-ingress  run_state=0 accept_traffic=1 overlay_id=0
+name=spoke3 ver=2 serial=1 192.162.3.2:0->216.4.0.2:0 tun_id=216.4.0.2 dst_mtu=1500 dpd-link=on remote_location=0.0.0.0 weight=1
+bound_if=4 lgwy=static/1 tun=intf/0 mode=auto/1 encap=none/3584 options[0e00]=frag-rfc fec-egress fec-ingress  run_state=0 accept_traffic=1 overlay_id=0
 
-parent=advpn-hub1 index=0
-proxyid_num=1 child_num=0 refcnt=7 ilast=1 olast=1 ad=s/1
-stat: rxp=21 txp=20 rxb=2480 txb=1650
-dpd: mode=on-demand on=1 idle=5000ms retry=3 count=0 seqno=0
+proxyid_num=1 child_num=1 refcnt=6 ilast=0 olast=0 ad=r/2
+stat: rxp=1961 txp=1969 rxb=190192 txb=80798
+dpd: mode=on-demand on=1 idle=20000ms retry=3 count=0 seqno=0
 natt: mode=none draft=0 interval=0 remote_port=0
 fec-egress: base=20 redundant=1 remote_port=50000 codec=rs
 fec-ingress: base=20 redundant=1 codec=rs
-proxyid=advpn-hub1 proto=0 sa=1 ref=3 serial=1 ads
-  src: 0:0.0.0.0-255.255.255.255:0
-  dst: 0:0.0.0.0-255.255.255.255:0
-  SA:  ref=3 options=20a02 type=00 soft=0 mtu=1390 expire=42814/0B replaywin=2048
-       seqno=15 esn=0 replaywin_lastseq=00000016 itn=0 qat=0 hash_search_len=1
-  life: type=01 bytes=0/0 timeout=43191/43200
-  dec: spi=e70b8105 esp=des key=8 c1bc4a891263ca4e
-       ah=sha1 key=20 097f37282a4a5b82a9005caae7171e7d7581f648
-  enc: spi=6df1aaa7 esp=des key=8 198d470388fee30a
-       ah=sha1 key=20 10c2a7631f7d45b7e2f2390facc2563d602b2485
-  dec:pkts/bytes=21/1354, enc:pkts/bytes=20/2728
+proxyid=spoke03 proto=0 sa=1 ref=4 serial=1 adr
+  src: 0:0.0.0.0/0.0.0.0:0
+  dst: 0:0.0.0.0/0.0.0.0:0
+  SA:  ref=3 options=32202 type=00 soft=0 mtu=1390 expire=41950/0B replaywin=2048
+       seqno=7ad esn=0 replaywin_lastseq=000007a5 itn=0 qat=0 hash_search_len=1
+  life: type=01 bytes=0/0 timeout=42902/43200
+  dec: spi=bf8a5ec1 esp=des key=8 95c1fa81cc692c04
+       ah=sha1 key=20 eef7efca45517422a4a4c74b48806269568bb89c
+  enc: spi=addea4fb esp=des key=8 b662cfbf314314ac
+       ah=sha1 key=20 c16a84925ec639b7e22e11a9ee28f68f85d526fd
+  dec:pkts/bytes=1956/80104, enc:pkts/bytes=1964/190208
+run_tally=0
 ------------------------------------------------------
-name=advpn-hub1_1 ver=2 serial=4 192.162.254.2:0->192.162.3.2:0 tun_id=192.162.3.2 dst_mtu=1500 dpd-link=on remote_location=0.0.0.0 weight=1
+name=spoke3_0 ver=2 serial=5 192.162.3.2:0->192.162.2.2:0 tun_id=192.162.2.2 dst_mtu=1500 dpd-link=on remote_location=0.0.0.0 weight=1
 bound_if=4 lgwy=static/1 tun=intf/0 mode=dial_inst/3 encap=none/3712 options[0e80]=rgwy-chg frag-rfc fec-egress fec-ingress  run_state=0 accept_traffic=1 overlay_id=0
 
-parent=advpn-hub1 index=1
+parent=spoke3 index=0
+proxyid_num=1 child_num=0 refcnt=6 ilast=18 olast=198 ad=r/2
+stat: rxp=5 txp=5 rxb=680 txb=420
+dpd: mode=on-demand on=1 idle=20000ms retry=3 count=0 seqno=0
+natt: mode=none draft=0 interval=0 remote_port=0
+fec-egress: base=20 redundant=1 remote_port=50000 codec=rs
+fec-ingress: base=20 redundant=1 codec=rs
+proxyid=spoke03 proto=0 sa=1 ref=2 serial=1 adr
+  src: 0:0.0.0.0/0.0.0.0:0
+  dst: 0:0.0.0.0/0.0.0.0:0
+  SA:  ref=3 options=32202 type=00 soft=0 mtu=1390 expire=42974/0B replaywin=2048
+       seqno=6 esn=0 replaywin_lastseq=00000006 itn=0 qat=0 hash_search_len=1
+  life: type=01 bytes=0/0 timeout=43191/43200
+  dec: spi=bf8a5ec5 esp=des key=8 a2ea348b15b73f26
+       ah=md5 key=16 103591ea7a0be405287674dfbb95eec9
+  enc: spi=425f1deb esp=des key=8 8be141439223ea14
+       ah=md5 key=16 c5a3c19f90d24f5ea0350c5063afbcfa
+  dec:pkts/bytes=5/420, enc:pkts/bytes=5/680
+------------------------------------------------------
+name=spoke3_backup ver=2 serial=2 12.1.3.2:0->216.4.0.6:0 tun_id=216.4.0.6 dst_mtu=1500 dpd-link=on remote_location=0.0.0.0 weight=1
+bound_if=6 lgwy=static/1 tun=intf/0 mode=auto/1 encap=none/3584 options[0e00]=frag-rfc fec-egress fec-ingress  run_state=0 accept_traffic=1 overlay_id=0
+
+proxyid_num=1 child_num=0 refcnt=5 ilast=0 olast=0 ad=r/2
+stat: rxp=1946 txp=1955 rxb=188048 txb=79634
+dpd: mode=on-demand on=1 idle=20000ms retry=3 count=0 seqno=0
+natt: mode=none draft=0 interval=0 remote_port=0
+fec-egress: base=20 redundant=1 remote_port=50000 codec=rs
+fec-ingress: base=20 redundant=1 codec=rs
+proxyid=spoke03_backup proto=0 sa=1 ref=4 serial=1 adr
+  src: 0:0.0.0.0/0.0.0.0:0
+  dst: 0:0.0.0.0/0.0.0.0:0
+  SA:  ref=3 options=32202 type=00 soft=0 mtu=1390 expire=41950/0B replaywin=2048
+       seqno=7a4 esn=0 replaywin_lastseq=0000079b itn=0 qat=0 hash_search_len=1
+  life: type=01 bytes=0/0 timeout=42902/43200
+  dec: spi=bf8a5ec2 esp=des key=8 780fc7e8b0e962c9
+       ah=sha1 key=20 bb822b56ec014b5da5185df4ad66edbd2d8f3f48
+  enc: spi=addea4fa esp=des key=8 7ed7a29c4fd0a696
+       ah=sha1 key=20 e242b6658090fd12b787ab754dcda5ff02ca0e67
+  dec:pkts/bytes=1946/79153, enc:pkts/bytes=1955/189000
+run_tally=0
+
+
+
+
+
+FortiGate-Central_Hub # diagnose vpn t l
+list all ipsec tunnel in vd 0
+------------------------------------------------------
+name=advpn-hub1_0 ver=2 serial=4 216.4.0.2:0->192.162.3.2:0 tun_id=192.162.3.2 dst_mtu=1500 dpd-link=on remote_location=0.0.0.0 weight=1
+bound_if=4 lgwy=static/1 tun=intf/0 mode=dial_inst/3 encap=none/3712 options[0e80]=rgwy-chg frag-rfc fec-egress fec-ingress  run_state=0 accept_traffic=1 overlay_id=0
+
+parent=advpn-hub1 index=0
 proxyid_num=1 child_num=0 refcnt=8 ilast=0 olast=0 ad=s/1
-stat: rxp=770 txp=769 rxb=74464 txb=31666
+stat: rxp=2288 txp=2280 rxb=221432 txb=93193
 dpd: mode=on-demand on=1 idle=5000ms retry=3 count=0 seqno=0
 natt: mode=none draft=0 interval=0 remote_port=0
 fec-egress: base=20 redundant=1 remote_port=50000 codec=rs
@@ -40,52 +87,52 @@ fec-ingress: base=20 redundant=1 codec=rs
 proxyid=advpn-hub1 proto=0 sa=1 ref=4 serial=1 ads
   src: 0:0.0.0.0-255.255.255.255:0
   dst: 0:0.0.0.0-255.255.255.255:0
-  SA:  ref=3 options=20a02 type=00 soft=0 mtu=1390 expire=42813/0B replaywin=2048
-       seqno=302 esn=0 replaywin_lastseq=00000303 itn=0 qat=0 hash_search_len=1
-  life: type=01 bytes=0/0 timeout=43187/43200
-  dec: spi=e70b8106 esp=des key=8 3b9afa7d67574efb
-       ah=sha1 key=20 4ffe0f93c8a06c0efe3d53b4955cf7535d550ee2
-  enc: spi=cb517b13 esp=des key=8 d839227eab1c999f
-       ah=sha1 key=20 e0ad20b335fedfc043c653f6770073d1654e8cc9
-  dec:pkts/bytes=770/31397, enc:pkts/bytes=769/74688
+  SA:  ref=3 options=20a02 type=00 soft=0 mtu=1390 expire=42074/0B replaywin=2048
+       seqno=8e9 esn=0 replaywin_lastseq=000008f1 itn=0 qat=0 hash_search_len=1
+  life: type=01 bytes=0/0 timeout=43185/43200
+  dec: spi=addea4fb esp=des key=8 b662cfbf314314ac
+       ah=sha1 key=20 c16a84925ec639b7e22e11a9ee28f68f85d526fd
+  enc: spi=bf8a5ec1 esp=des key=8 95c1fa81cc692c04
+       ah=sha1 key=20 eef7efca45517422a4a4c74b48806269568bb89c
+  dec:pkts/bytes=2288/93467, enc:pkts/bytes=2280/220736
 ------------------------------------------------------
-name=advpn-hub1 ver=2 serial=1 192.162.254.2:0->0.0.0.0:0 tun_id=1.0.0.0 dst_mtu=0 dpd-link=on remote_location=0.0.0.0 weight=1
-bound_if=4 lgwy=static/1 tun=intf/0 mode=dialup/2 encap=none/3584 options[0e00]=frag-rfc fec-egress fec-ingress  accept_traffic=1 overlay_id=0
+name=advpn-hub1_1 ver=2 serial=6 216.4.0.2:0->192.162.2.2:0 tun_id=192.162.2.2 dst_mtu=1500 dpd-link=on remote_location=0.0.0.0 weight=1
+bound_if=4 lgwy=static/1 tun=intf/0 mode=dial_inst/3 encap=none/3712 options[0e80]=rgwy-chg frag-rfc fec-egress fec-ingress  run_state=0 accept_traffic=1 overlay_id=0
 
-proxyid_num=0 child_num=2 refcnt=4 ilast=432 olast=432 ad=/0
-stat: rxp=791 txp=789 rxb=76944 txb=33316
-dpd: mode=on-demand on=0 idle=5000ms retry=3 count=0 seqno=0
-natt: mode=none draft=0 interval=0 remote_port=0
-run_tally=0
-------------------------------------------------------
-name=advpn2-hub1_0 ver=2 serial=5 12.1.254.2:0->12.1.2.2:0 tun_id=12.1.2.2 dst_mtu=1500 dpd-link=on remote_location=0.0.0.0 weight=1
-bound_if=6 lgwy=static/1 tun=intf/0 mode=dial_inst/3 encap=none/3712 options[0e80]=rgwy-chg frag-rfc fec-egress fec-ingress  run_state=0 accept_traffic=1 overlay_id=0
-
-parent=advpn2-hub1 index=0
-proxyid_num=1 child_num=0 refcnt=7 ilast=0 olast=20 ad=s/1
-stat: rxp=19 txp=18 rxb=2248 txb=1639
+parent=advpn-hub1 index=1
+proxyid_num=1 child_num=0 refcnt=8 ilast=0 olast=0 ad=s/1
+stat: rxp=2278 txp=2283 rxb=220176 txb=93492
 dpd: mode=on-demand on=1 idle=5000ms retry=3 count=0 seqno=0
 natt: mode=none draft=0 interval=0 remote_port=0
 fec-egress: base=20 redundant=1 remote_port=50000 codec=rs
 fec-ingress: base=20 redundant=1 codec=rs
-proxyid=advpn2-hub1 proto=0 sa=1 ref=3 serial=1 ads
+proxyid=advpn-hub1 proto=0 sa=1 ref=4 serial=1 ads
   src: 0:0.0.0.0-255.255.255.255:0
   dst: 0:0.0.0.0-255.255.255.255:0
-  SA:  ref=3 options=20a02 type=00 soft=0 mtu=1390 expire=42854/0B replaywin=2048
-       seqno=13 esn=0 replaywin_lastseq=00000014 itn=0 qat=0 hash_search_len=1
+  SA:  ref=3 options=20a02 type=00 soft=0 mtu=1390 expire=42076/0B replaywin=2048
+       seqno=8ec esn=0 replaywin_lastseq=000008e7 itn=0 qat=0 hash_search_len=1
   life: type=01 bytes=0/0 timeout=43185/43200
-  dec: spi=e70b8107 esp=des key=8 28eb3d04f8a7b8fb
-       ah=sha1 key=20 5cdae72f72d74d8543ce898d54e74f5fca9dae66
-  enc: spi=6df1aaa9 esp=des key=8 04878acedf0c8aed
-       ah=sha1 key=20 a06d0327d76661a50f995165aa03c6663221926d
-  dec:pkts/bytes=19/1231, enc:pkts/bytes=18/2616
+  dec: spi=addea4fd esp=des key=8 392f240df9075b55
+       ah=sha1 key=20 c2a1bf48693d02c2be4dc91197629204ce3cce53
+  enc: spi=425f1de9 esp=des key=8 35013d10650f7a82
+       ah=sha1 key=20 6e960693e69447da4da183b4d707e0bb6851e01f
+  dec:pkts/bytes=2278/92743, enc:pkts/bytes=2283/221184
 ------------------------------------------------------
-name=advpn2-hub1_1 ver=2 serial=6 12.1.254.2:0->12.1.3.2:0 tun_id=12.1.3.2 dst_mtu=1500 dpd-link=on remote_location=0.0.0.0 weight=1
+name=advpn-hub1 ver=2 serial=1 216.4.0.2:0->0.0.0.0:0 tun_id=1.0.0.0 dst_mtu=0 dpd-link=on remote_location=0.0.0.0 weight=1
+bound_if=4 lgwy=static/1 tun=intf/0 mode=dialup/2 encap=none/3584 options[0e00]=frag-rfc fec-egress fec-ingress  accept_traffic=1 overlay_id=0
+
+proxyid_num=0 child_num=2 refcnt=4 ilast=1194 olast=1194 ad=/0
+stat: rxp=4566 txp=4563 rxb=441608 txb=186685
+dpd: mode=on-demand on=0 idle=5000ms retry=3 count=0 seqno=0
+natt: mode=none draft=0 interval=0 remote_port=0
+run_tally=0
+------------------------------------------------------
+name=advpn2-hub1_0 ver=2 serial=3 216.4.0.6:0->12.1.3.2:0 tun_id=12.1.3.2 dst_mtu=1500 dpd-link=on remote_location=0.0.0.0 weight=1
 bound_if=6 lgwy=static/1 tun=intf/0 mode=dial_inst/3 encap=none/3712 options[0e80]=rgwy-chg frag-rfc fec-egress fec-ingress  run_state=0 accept_traffic=1 overlay_id=0
 
-parent=advpn2-hub1 index=1
+parent=advpn2-hub1 index=0
 proxyid_num=1 child_num=0 refcnt=8 ilast=0 olast=0 ad=s/1
-stat: rxp=661 txp=660 rxb=63872 txb=27107
+stat: rxp=2278 txp=2269 rxb=220096 txb=92190
 dpd: mode=on-demand on=1 idle=5000ms retry=3 count=0 seqno=0
 natt: mode=none draft=0 interval=0 remote_port=0
 fec-egress: base=20 redundant=1 remote_port=50000 codec=rs
@@ -93,94 +140,42 @@ fec-ingress: base=20 redundant=1 codec=rs
 proxyid=advpn2-hub1 proto=0 sa=1 ref=4 serial=1 ads
   src: 0:0.0.0.0-255.255.255.255:0
   dst: 0:0.0.0.0-255.255.255.255:0
-  SA:  ref=3 options=20a02 type=00 soft=0 mtu=1390 expire=42864/0B replaywin=2048
-       seqno=296 esn=0 replaywin_lastseq=00000297 itn=0 qat=0 hash_search_len=1
-  life: type=01 bytes=0/0 timeout=43188/43200
-  dec: spi=e70b8108 esp=des key=8 a943bc67bcbe9d42
-       ah=sha1 key=20 8108e08ff790d826be869e429212f7ecfde5438f
-  enc: spi=cb517b15 esp=des key=8 49c6c7e66e7ef383
-       ah=sha1 key=20 2bd46aa6b25bf1876e41c425778fcc4d18e84632
-  dec:pkts/bytes=662/26936, enc:pkts/bytes=661/64128
+  SA:  ref=3 options=20a02 type=00 soft=0 mtu=1390 expire=42078/0B replaywin=2048
+       seqno=8de esn=0 replaywin_lastseq=000008e7 itn=0 qat=0 hash_search_len=1
+  life: type=01 bytes=0/0 timeout=43190/43200
+  dec: spi=addea4fa esp=des key=8 7ed7a29c4fd0a696
+       ah=sha1 key=20 e242b6658090fd12b787ab754dcda5ff02ca0e67
+  enc: spi=bf8a5ec2 esp=des key=8 780fc7e8b0e962c9
+       ah=sha1 key=20 bb822b56ec014b5da5185df4ad66edbd2d8f3f48
+  dec:pkts/bytes=2278/92652, enc:pkts/bytes=2269/219168
 ------------------------------------------------------
-name=advpn2-hub1 ver=2 serial=2 12.1.254.2:0->0.0.0.0:0 tun_id=2.0.0.0 dst_mtu=0 dpd-link=on remote_location=0.0.0.0 weight=1
+name=advpn2-hub1_1 ver=2 serial=5 216.4.0.6:0->12.1.2.2:0 tun_id=12.1.2.2 dst_mtu=1500 dpd-link=on remote_location=0.0.0.0 weight=1
+bound_if=6 lgwy=static/1 tun=intf/0 mode=dial_inst/3 encap=none/3712 options[0e80]=rgwy-chg frag-rfc fec-egress fec-ingress  run_state=0 accept_traffic=1 overlay_id=0
+
+parent=advpn2-hub1 index=1
+proxyid_num=1 child_num=0 refcnt=8 ilast=0 olast=0 ad=s/1
+stat: rxp=2275 txp=2280 rxb=219776 txb=93300
+dpd: mode=on-demand on=1 idle=5000ms retry=3 count=0 seqno=0
+natt: mode=none draft=0 interval=0 remote_port=0
+fec-egress: base=20 redundant=1 remote_port=50000 codec=rs
+fec-ingress: base=20 redundant=1 codec=rs
+proxyid=advpn2-hub1 proto=0 sa=1 ref=4 serial=1 ads
+  src: 0:0.0.0.0-255.255.255.255:0
+  dst: 0:0.0.0.0-255.255.255.255:0
+  SA:  ref=3 options=20a02 type=00 soft=0 mtu=1390 expire=42080/0B replaywin=2048
+       seqno=8ea esn=0 replaywin_lastseq=000008e5 itn=0 qat=0 hash_search_len=1
+  life: type=01 bytes=0/0 timeout=43190/43200
+  dec: spi=addea4fc esp=des key=8 0c4938259f5f7923
+       ah=sha1 key=20 03c47dfb85e53f70bfddc73605a9453619c84022
+  enc: spi=425f1dea esp=des key=8 d06f3850ac640f34
+       ah=sha1 key=20 9df1a745f89fc5076c503907699b88cee4a744c5
+  dec:pkts/bytes=2276/92538, enc:pkts/bytes=2281/220928
+------------------------------------------------------
+name=advpn2-hub1 ver=2 serial=2 216.4.0.6:0->0.0.0.0:0 tun_id=2.0.0.0 dst_mtu=0 dpd-link=on remote_location=0.0.0.0 weight=1
 bound_if=6 lgwy=static/1 tun=intf/0 mode=dialup/2 encap=none/3584 options[0e00]=frag-rfc fec-egress fec-ingress  accept_traffic=1 overlay_id=0
 
-proxyid_num=0 child_num=2 refcnt=4 ilast=432 olast=432 ad=/0
-stat: rxp=680 txp=678 rxb=66120 txb=28746
+proxyid_num=0 child_num=2 refcnt=4 ilast=1194 olast=1194 ad=/0
+stat: rxp=4553 txp=4549 rxb=439872 txb=185490
 dpd: mode=on-demand on=0 idle=5000ms retry=3 count=0 seqno=0
 natt: mode=none draft=0 interval=0 remote_port=0
 run_tally=0
-
-
-
-
-
-
-
-
-list all ipsec tunnel in vd 0
-------------------------------------------------------
-name=spoke2_0 ver=2 serial=3 192.162.2.2:0->192.162.3.2:0 tun_id=192.162.3.2 dst_mtu=1500 dpd-link=on remote_location=0.0.0.0 weight=1
-bound_if=4 lgwy=static/1 tun=intf/0 mode=dial_inst/3 encap=none/3792 options[0ed0]=create_dev no-sysctl rgwy-chg frag-rfc fec-egress fec-ingress  accept_traffic=1 overlay_id=0
-
-parent=spoke2 index=0
-proxyid_num=1 child_num=0 refcnt=7 ilast=0 olast=0 ad=r/2
-stat: rxp=29909 txp=29910 rxb=2872464 txb=1197720
-dpd: mode=on-idle on=1 idle=20000ms retry=3 count=0 seqno=0
-natt: mode=none draft=0 interval=0 remote_port=0
-fec-egress: base=20 redundant=1 remote_port=50000 codec=rs
-fec-ingress: base=20 redundant=1 codec=rs
-proxyid=spoke02 proto=0 sa=1 ref=5 serial=1 adr
-  src: 0:0.0.0.0/0.0.0.0:0
-  dst: 0:0.0.0.0/0.0.0.0:0
-  SA:  ref=3 options=32202 type=00 soft=0 mtu=1390 expire=36038/0B replaywin=2048
-       seqno=74d7 esn=0 replaywin_lastseq=000074d6 itn=0 qat=0 hash_search_len=1
-  life: type=01 bytes=0/0 timeout=43190/43200
-  dec: spi=6df1aaaa esp=des key=8 698209c7eca21d61
-       ah=md5 key=16 a6a39fe6bab11d0e3d613cc5f7bb67e9
-  enc: spi=cb517b16 esp=des key=8 0d7d1e2ee67b666c
-       ah=md5 key=16 1650a7305547abf1ee5a074c7395e49c
-  dec:pkts/bytes=29909/1197680, enc:pkts/bytes=29910/2872560
-------------------------------------------------------
-name=spoke2 ver=2 serial=1 192.162.2.2:0->192.162.254.2:0 tun_id=192.162.254.2 dst_mtu=1500 dpd-link=on remote_location=0.0.0.0 weight=1
-bound_if=4 lgwy=static/1 tun=intf/0 mode=auto/1 encap=none/3600 options[0e10]=create_dev frag-rfc fec-egress fec-ingress  accept_traffic=1 overlay_id=0
-
-proxyid_num=1 child_num=1 refcnt=6 ilast=13 olast=13 ad=r/2
-stat: rxp=31478 txp=31475 rxb=3030928 txb=1268180
-dpd: mode=on-idle on=1 idle=20000ms retry=3 count=0 seqno=241
-natt: mode=none draft=0 interval=0 remote_port=0
-fec-egress: base=20 redundant=1 remote_port=50000 codec=rs
-fec-ingress: base=20 redundant=1 codec=rs
-proxyid=spoke02 proto=0 sa=1 ref=3 serial=1 adr
-  src: 0:0.0.0.0/0.0.0.0:0
-  dst: 0:0.0.0.0/0.0.0.0:0
-  SA:  ref=3 options=32202 type=00 soft=0 mtu=1390 expire=34761/0B replaywin=2048
-       seqno=61e esn=0 replaywin_lastseq=00000622 itn=0 qat=0 hash_search_len=1
-  life: type=01 bytes=0/0 timeout=42897/43200
-  dec: spi=6df1aaa7 esp=des key=8 198d470388fee30a
-       ah=sha1 key=20 10c2a7631f7d45b7e2f2390facc2563d602b2485
-  enc: spi=e70b8105 esp=des key=8 c1bc4a891263ca4e
-       ah=sha1 key=20 097f37282a4a5b82a9005caae7171e7d7581f648
-  dec:pkts/bytes=1569/71195, enc:pkts/bytes=1565/157512
-------------------------------------------------------
-name=spoke2_backup ver=2 serial=2 12.1.2.2:0->12.1.254.2:0 tun_id=12.1.254.2 dst_mtu=1500 dpd-link=on remote_location=0.0.0.0 weight=1
-bound_if=6 lgwy=static/1 tun=intf/0 mode=auto/1 encap=none/3600 options[0e10]=create_dev frag-rfc fec-egress fec-ingress  accept_traffic=1 overlay_id=0
-
-proxyid_num=1 child_num=0 refcnt=5 ilast=12 olast=12 ad=r/2
-stat: rxp=1571 txp=1593 rxb=157656 txb=71503
-dpd: mode=on-idle on=1 idle=20000ms retry=3 count=0 seqno=242
-natt: mode=none draft=0 interval=0 remote_port=0
-fec-egress: base=20 redundant=1 remote_port=50000 codec=rs
-fec-ingress: base=20 redundant=1 codec=rs
-proxyid=spoke02_backup proto=0 sa=1 ref=3 serial=1 adr
-  src: 0:0.0.0.0/0.0.0.0:0
-  dst: 0:0.0.0.0/0.0.0.0:0
-  SA:  ref=3 options=32202 type=00 soft=0 mtu=1390 expire=34811/0B replaywin=2048
-       seqno=63a esn=0 replaywin_lastseq=00000624 itn=0 qat=0 hash_search_len=1
-  life: type=01 bytes=0/0 timeout=42901/43200
-  dec: spi=6df1aaa9 esp=des key=8 04878acedf0c8aed
-       ah=sha1 key=20 a06d0327d76661a50f995165aa03c6663221926d
-  enc: spi=e70b8107 esp=des key=8 28eb3d04f8a7b8fb
-       ah=sha1 key=20 5cdae72f72d74d8543ce898d54e74f5fca9dae66
-  dec:pkts/bytes=1571/70154, enc:pkts/bytes=1593/160136
-
