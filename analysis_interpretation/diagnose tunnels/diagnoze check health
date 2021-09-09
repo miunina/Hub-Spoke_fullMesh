@@ -1,9 +1,49 @@
 diagnose sys virtual-wan-link service 
 
+FortiGate-beta_spoke2 # diagnose sys sdwan health-check
+Health Check(SLA2):
+Seq(1 spoke2): state(alive), packet-loss(0.000%) latency(24.981), jitter(10.265) sla_map=0x1
+Seq(2 spoke2_backup): state(alive), packet-loss(0.000%) latency(25.243), jitter(13.194) sla_map=0x1
+Seq(2 spoke2_backup_0): state(dead), packet-loss(100.000%) sla_map=0x0
+Health Check(SLA2_passive_BestQoS):
+
+FortiGate-beta_spoke2 # diagnose sys sdwan route
+SD-WAN route(3) 216.4.0.4 255.255.255.252, gw(216.4.0.2), oif(spoke2, 19), distance/weight/prio(1/1/0)
+SD-WAN route(3) 216.4.0.4 255.255.255.252, gw(216.4.0.6), oif(spoke2_backup, 20), distance/weight/prio(1/1/0)
+SD-WAN route(4) 216.4.0.0 255.255.255.252, gw(216.4.0.2), oif(spoke2, 19), distance/weight/prio(1/1/0)
+SD-WAN route(4) 216.4.0.0 255.255.255.252, gw(216.4.0.6), oif(spoke2_backup, 20), distance/weight/prio(1/1/0)
+
+
+FortiGate-teta_spoke3 # diagnose sys sdwan health-check
+#Health Check(SLA):
+#Seq(1 spoke3): state(alive), packet-loss(1.000%) latency(25.529), jitter(12.344) sla_map=0x1
+#Seq(1 spoke3_0): state(alive), packet-loss(1.000%) latency(25.606), jitter(13.959) sla_map=01
+#Seq(2 spoke3_backup): state(alive), packet-loss(0.000%) latency(24.793), jitter(12.011) sla_1
+#Seq(2 spoke3_backup_0): state(alive), packet-loss(0.000%) latency(28.195), jitter(14.929) sl1
+
+
+FortiGate-teta_spoke3 # execute traceroute 172.150.3.66
+traceroute to 172.150.3.66 (172.150.3.66), 32 hops max, 3 probe packets per hop, 84 byte packets
+ 1  10.10.10.2  26.954 ms  20.345 ms  20.431 ms
+ 2  172.150.3.66  83.336 ms *  61.782 ms
+
+FortiGate-teta_spoke3 # execute traceroute 172.150.1.2
+traceroute to 172.150.1.2 (172.150.1.2), 32 hops max, 3 probe packets per hop, 84 byte packets
+ 1  10.10.10.1  15.653 ms  24.548 ms  42.167 ms
+ 2  * 172.150.1.2  23.867 ms  22.152 ms
+
+FortiGate-beta_spoke2 # diagnose sys sdwan zone
+Zone VPN index=2
+         members(2): 19(spoke2) 20(spoke2_backup)
+Zone virtual-wan-link index=1
+         members(0):
+
+
+
 diagnose firewall proute list
 
 
-get router info bgp network 10.118.0.0
+get router info bgp network 10.10.20.2
 Received BGP networks are properly tagged:
 
     FG60D-BR # get router info bgp network 10.118.0.0
