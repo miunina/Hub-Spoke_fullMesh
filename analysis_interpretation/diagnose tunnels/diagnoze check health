@@ -1,0 +1,60 @@
+diagnose sys virtual-wan-link service 
+
+diagnose firewall proute list
+
+
+get router info bgp network 10.118.0.0
+Received BGP networks are properly tagged:
+
+    FG60D-BR # get router info bgp network 10.118.0.0
+    BGP routing table entry for 10.118.0.0/20
+    Paths: (2 available, best #1, table Default-IP-Routing-Table)
+      Not advertised to any peer
+      Local
+        1.1.1.1 from 1.1.1.1 (10.10.10.10)
+          Origin IGP metric 0, localpref 100, valid, internal, best
+          Community: 1:1
+          Last update: Mon Apr 16 09:21:17 2018
+
+      Local
+        2.2.2.1 from 2.2.2.1 (10.10.10.10)
+          Origin IGP metric 0, localpref 100, valid, internal
+          Community: 1:1
+          Last update: Mon Apr 16 09:21:31 2018
+
+
+FortiGate-beta_spoke2 # diagnose sys tcpsock | grep 0.0.0.0
+0.0.0.0:10400->0.0.0.0:0->state=listen err=0 socktype=4 rma=0 wma=0 fma=0 tma=0 inode=10771 process=144/authd
+0.0.0.0:5060->0.0.0.0:0->state=listen err=0 socktype=2 rma=0 wma=0 fma=0 tma=0 inode=10646 process=154/voipd
+0.0.0.0:5061->0.0.0.0:0->state=listen err=0 socktype=2 rma=0 wma=0 fma=0 tma=0 inode=10647 process=154/voipd
+0.0.0.0:1004->0.0.0.0:0->state=listen err=0 socktype=4 rma=0 wma=0 fma=0 tma=0 inode=10192 process=145/foauthd
+0.0.0.0:8013->0.0.0.0:0->state=listen err=0 socktype=1 rma=0 wma=0 fma=0 tma=0 inode=11793 process=193/fsvrd
+0.0.0.0:910->0.0.0.0:0->state=listen err=0 socktype=1 rma=0 wma=0 fma=0 tma=0 inode=10549 process=154/voipd
+0.0.0.0:1007->0.0.0.0:0->state=listen err=0 socktype=2 rma=0 wma=0 fma=0 tma=0 inode=9813 process=132/ipsmonitor
+
+0.0.0.0:10000->0.0.0.0:0->state=listen err=0 socktype=4 rma=0 wma=0 fma=0 tma=0 inode=10854 process=144/authd
+0.0.0.0:2000->0.0.0.0:0->state=listen err=0 socktype=2 rma=0 wma=0 fma=0 tma=0 inode=10604 process=154/voipd
+0.0.0.0:179->0.0.0.0:0->state=listen err=0 socktype=1 rma=0 wma=0 fma=0 tma=0 inode=12056 process=128/bgpd
+
+0.0.0.0:1011->0.0.0.0:0->state=listen err=0 socktype=4 rma=0 wma=0 fma=0 tma=0 inode=10890 process=144/authd
+127.0.0.1:54100->0.0.0.0:0->state=listen err=0 socktype=1 rma=0 wma=0 fma=0 tma=0 inode=12184 process=204/fgfmd
+0.0.0.0:1012->0.0.0.0:0->state=listen err=0 socktype=4 rma=0 wma=0 fma=0 tma=0 inode=10901 process=144/authd
+0.0.0.0:10100->0.0.0.0:0->state=listen err=0 socktype=4 rma=0 wma=0 fma=0 tma=0 inode=10855 process=144/authd
+0.0.0.0:53->0.0.0.0:0->state=listen err=0 socktype=1 rma=0 wma=0 fma=0 tma=0 inode=11941 process=200/dnsproxy
+0.0.0.0:1013->0.0.0.0:0->state=listen err=0 socktype=4 rma=0 wma=0 fma=0 tma=0 inode=10891 process=144/authd
+
+0.0.0.0:22->0.0.0.0:0->state=listen err=0 socktype=1 rma=0 wma=0 fma=0 tma=0 inode=11590 process=191/sshd
+
+0.0.0.0:1014->0.0.0.0:0->state=listen err=0 socktype=4 rma=0 wma=0 fma=0 tma=0 inode=10902 process=144/authd
+0.0.0.0:1015->0.0.0.0:0->state=listen err=0 socktype=4 rma=0 wma=0 fma=0 tma=0 inode=10903 process=144/authd
+127.0.0.1:8023->0.0.0.0:0->state=listen err=0 socktype=1 rma=0 wma=0 fma=0 tma=0 inode=10119 process=147/httpclid
+0.0.0.0:1016->0.0.0.0:0->state=listen err=0 socktype=4 rma=0 wma=0 fma=0 tma=0 inode=10905 process=144/authd
+0.0.0.0:10200->0.0.0.0:0->state=listen err=0 socktype=4 rma=0 wma=0 fma=0 tma=0 inode=10858 process=144/authd
+0.0.0.0:1018->0.0.0.0:0->state=listen err=0 socktype=4 rma=0 wma=0 fma=0 tma=0 inode=10196 process=145/foauthd
+0.0.0.0:7900->0.0.0.0:0->state=listen err=0 socktype=2 rma=0 wma=0 fma=0 tma=0 inode=13602 process=209/dnsproxy
+0.0.0.0:10300->0.0.0.0:0->state=listen err=0 socktype=4 rma=0 wma=0 fma=0 tma=0 inode=10773 process=144/authd
+
+127.0.0.1:9980->0.0.0.0:0->state=listen err=0 socktype=1 rma=0 wma=0 fma=0 tma=0 inode=10361 process=122/httpsd
+
+0.0.0.0:541->0.0.0.0:0->state=listen err=0 socktype=1 rma=0 wma=0 fma=0 tma=0 inode=12178 process=204/fgfmd
+0.0.0.0:1023->0.0.0.0:0->state=listen err=0 socktype=4 rma=0 wma=0 fma=0 tma=0 inode=10904 process=144/authd
