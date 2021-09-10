@@ -5,7 +5,7 @@ alpha_switch :
 ##########################################################################VLANS
 configure terminal 
 vlan 10
-name VLAN_10
+name finance
 end
 
 configure terminal 
@@ -16,12 +16,12 @@ end
 
 configure terminal 
 vlan 30
-name VLAN_30
+name others
 end
 
 configure terminal 
 vlan 101
-name VLAN_101
+name management
 exit
 ##########################################################################TRUNK
 interface g0/0
@@ -55,10 +55,10 @@ alpha_switch2
 ##########################################################################
 configure terminal
 vlan 40
-name VLAN_10
+name guest
 exit
 vlan 30
-name VLAN_30
+name others
 exit
 vlan 99
 name native

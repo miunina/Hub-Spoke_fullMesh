@@ -5,12 +5,12 @@ alpha_switch :
 #####################################VLANS#####################################
 configure terminal 
 vlan 10
-name VLAN_10
+name finance
 end
 
 configure terminal 
 vlan 101
-name VLAN_101
+name management
 exit
 
  
