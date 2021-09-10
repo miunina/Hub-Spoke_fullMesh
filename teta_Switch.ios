@@ -54,8 +54,8 @@ end
 alpha_switch2
 ##########################################################################
 configure terminal
-vlan 40
-name guest
+vlan 10
+name finance
 exit
 vlan 30
 name others
@@ -89,23 +89,23 @@ no sh
 exit
 ##########################################################################40
 interface g1/0
-switchport mode access
-switchport access vlan 40
+ switchport mode access
+ switchport access vlan 10
 no sh
 exit
 interface g1/1 
-switchport mode access
-switchport access vlan 40
+ switchport mode access
+ switchport access vlan 10
 no sh
 exit
 interface g1/2 
-switchport mode access
-switchport access vlan 40
+ switchport mode access
+ switchport access vlan 10
 no sh
 exit
 interface g1/3 
-switchport mode access
-switchport access vlan 40
+ switchport mode access
+ switchport access vlan 10
 no sh
 exit
     
