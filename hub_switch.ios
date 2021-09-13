@@ -6,12 +6,12 @@ switchport nonegotiate
 #####################################VLANS#####################################
 configure terminal 
 vlan 40
-name VLAN-40
+name guest
 end
 
 configure terminal 
 vlan 101
-name VLAN-101
+name management
 exit
 
  

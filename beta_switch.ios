@@ -5,7 +5,7 @@
 ##########################################################################VLANS
 configure terminal 
 vlan 40
-name VLAN_40
+name guest
 end
 
 configure terminal 
@@ -15,7 +15,7 @@ end
 
 configure terminal 
 vlan 101
-name VLAN_101
+name management
 end
 ##########################################################################TRUNK
 conf t
